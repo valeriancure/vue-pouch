@@ -8,7 +8,10 @@
   
   var vuePouch = {
     destroyed: function() {
-      Object.values(this._liveFinds).map(function(lf) { lf.cancel(); });
+      var values = Object.keys(this._liveFinds).map(function(e) {
+        return this._liveFinds[e]
+      })
+      values.map(function(lf) { lf.cancel(); });
     },
     created: function() {
       if (!vue) {
